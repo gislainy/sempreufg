@@ -1,0 +1,28 @@
+<ion-content padding ="sufg">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <div col-12 col-md-6>
+        <h1 ion-text text-center color="primary">Pronto! Agora você pode definir os seus dados cadastrais :D</h1>
+        <ion-item>
+          <ion-label floating>Identificador único (CPF ou E-mail)</ion-label>
+          <ion-input type="text" [(ngModel)]="user.identificador"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Digite novamente a senha</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password2"></ion-input>
+        </ion-item>
+
+        <ion-grid>
+          <ion-row>
+            <button col-12 color="entrar" ion-button (tap)="finalizar()">Cadastrar meu usuário</button>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-content padding ="sufg">
+  <ion-grid style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+      <div col-12 col-md-6>
+        <h1 ion-text text-center color="primary">{{pergunta.nome}}</h1>
+        <ion-list radio-group [(ngModel)]="alternativa">
+          <ion-item *ngFor="let a of pergunta.alternativas">
+            <ion-label>{{a.title}}</ion-label>
+            <ion-radio value="{{a.title}}" ></ion-radio>
+          </ion-item>
+        </ion-list>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <button *ngIf="perguntaAtual" col-12 color="secondary" ion-button (tap)="voltar()">
+                <ion-icon padding name="ios-arrow-dropleft"></ion-icon>Voltar
+              </button>
+            </ion-col>
+            <ion-col col-6 *ngIf="!finalizou" >
+              <button   col-12 color="primary" ion-button (tap)="avancar()">
+                Avançar<ion-icon padding name="ios-arrow-dropright"></ion-icon></button>
+            </ion-col>
+            <ion-col col-6 *ngIf="finalizou">
+              <button   col-12 color="danger" ion-button (tap)="concluir()">
+               Concluir <ion-icon padding name="ios-checkmark-circle"></ion-icon></button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>
