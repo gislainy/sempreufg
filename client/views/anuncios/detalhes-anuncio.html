@@ -1,0 +1,89 @@
+<div class="container">
+    <div>
+        <h2 class="text-center" ng-bind="anuncio.titulo">
+            </h1>
+    </div>
+    <div>
+        <label>Descrição</label>
+        <label class="pull-right">Cadastrado por {{autor}} em: {{anuncio.dataInclusao | date: 'dd/MM/yyyy'}}</label>
+        <div class="well" ng-bind="anuncio.descricao"></div>
+    </div>
+    <div>
+        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : false}">
+            <div owl-carousel-item="" ng-repeat="foto in anuncio.arquivos" class="item slider-height">
+                <div class="margin-bottom-20">
+                    <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                        <div class="thumbnail-img">
+                            <div class="overflow-hidden">
+                                <img class="img-responsive img-height" src="{{foto.enderecoArquivo}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </data-owl-carousel>
+    </div>
+    <div>
+        <h3>Preço:{{anuncio.precoEvento | currency:'R$':2}}</h3>
+    </div>
+    <hr>
+    <div>
+        <div class="col-md-3" ng-repeat="local in anuncio.locais">
+            <label>Local</label>
+            <p>{{local.local}}</p>
+        </div>
+        <div class="col-md-3">
+            <label>Modalidade</label>
+            <p>{{anuncio.modalidade}}</p>
+        </div>
+    </div>
+    <div>
+        <div class="col-md-3" ng-repeat="data in anuncio.datas">
+            <label>Data de início</label>
+            <p>{{data.dataEvento | date: 'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="col-md-3">
+            <label>Data de término</label>
+            <p>{{anuncio.dataTermino | date: 'dd/MM/yyyy'}}</p>
+        </div>
+    </div>
+    <div>
+        <br><br>
+    </div>
+    <hr>
+    <div>
+        <h3>Comentários</h3>
+    </div>
+    <hr>
+
+    <div class="col-md-6" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" ng-repeat="comentario in anuncio.comentarios track by $index">
+        <div class="col-md-2">
+            <div class="thumbnail">
+                <img class="img-responsive user-photo" ng-src="data:image/png;base64,{{comentario.imagem}}">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>{{comentario.autor}}</strong>
+                    <strong class="pull-right">{{comentario.dataInclusao | date: 'dd/MM/yyyy HH:mm:ss'}}</strong>
+                </div>
+                <div class="panel-body">
+                    {{comentario.texto}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="logado && statusPublicado">
+        <form name="formComentario" ng-submit="inserirComentario(formComentario.textoComentario)">
+            <div>
+                <div class="form-group">
+                    <textarea class="form-control" name="textoComentario" ng-model="textoComentario" id="" cols="20" rows="5"></textarea>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-space btn-primary pull-right" value="Comentar" ng-disabled="textoComentario.length === 0 || textoComentario.length === null || textoComentario.length === undefined">
+                </div>
+            </div>
+        </form>
+    </div>
+    <br><br>
